@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>xtage Docs</title>
+  <meta name="description" content="xtage documentation — code intelligence layer that indexes repos into token-efficient Markdown for Claude.">
+  <link rel="stylesheet" href="https://ruco.dev/assets/style.css">
+  <link rel="icon" href="https://ruco.dev/assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="20" height="20">
+        Ruco
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="https://ruco.dev">All projects</a></li>
+        <li><a href="../">xtage</a></li>
+        <li><a href="https://github.com/ruco-dev/xtage">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="docs-hero">
+    <div class="container">
+      <p class="eyebrow">xtage</p>
+      <h1>Documentation</h1>
+      <p>Code intelligence layer — indexes repos into token-efficient Markdown for Claude.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="docs-layout">
+
+      <aside class="docs-sidebar">
+        <span class="docs-sidebar-label">Getting started</span>
+        <nav>
+          <a href="#overview" class="active">Overview</a>
+          <a href="#install">Install</a>
+          <a href="#index">Index a repo</a>
+        </nav>
+        <span class="docs-sidebar-label">Output files</span>
+        <nav>
+          <a href="#codeindex">CODEINDEX.md</a>
+          <a href="#repo-md">REPO.md</a>
+          <a href="#projectinsights">PROJECTINSIGHTS.md</a>
+          <a href="#chunks">Per-file chunks</a>
+        </nav>
+        <span class="docs-sidebar-label">Reference</span>
+        <nav>
+          <a href="https://github.com/ruco-dev/xtage">GitHub →</a>
+        </nav>
+      </aside>
+
+      <main class="docs-content">
+
+        <h2 id="overview">Overview</h2>
+        <p>xtage is a code intelligence layer. It reads your repository and produces a set of structured Markdown files — stored outside the repo under <code>~/xtage/{repo}/</code> — that give Claude a token-efficient way to navigate large codebases without loading raw source into context.</p>
+        <p>Claude reads the index to understand structure, then loads specific chunks only when it needs to work with a particular file.</p>
+
+        <h2 id="install">Install</h2>
+        <pre><code>npm install -g xtage</code></pre>
+
+        <h2 id="index">Index a repo</h2>
+        <p>Run from any directory:</p>
+        <pre><code>xtage index .</code></pre>
+        <p>xtage writes output to <code>~/xtage/{repo-name}/</code>. Re-run after significant changes to keep the index fresh.</p>
+        <p>Index a specific path or repo name:</p>
+        <pre><code>xtage index /path/to/repo --name my-project</code></pre>
+
+        <h2 id="codeindex">CODEINDEX.md</h2>
+        <p>The primary navigation file. Maps every source file to a short description, its module/layer, and its key exports. Claude reads this first to understand the repo structure without opening any file.</p>
+        <pre><code>## src/auth/middleware.ts
+Layer: middleware | Module: auth
+Exports: authMiddleware, requireAdmin
+Purpose: Validates JWT tokens and attaches user to request context.</code></pre>
+
+        <h2 id="repo-md">REPO.md</h2>
+        <p>A high-level repo narrative — tech stack, architecture overview, entry points, deployment model. Written in plain prose for fast orientation.</p>
+
+        <h2 id="projectinsights">PROJECTINSIGHTS.md</h2>
+        <p>Cross-cutting patterns and non-obvious conventions — naming rules, invariants, gotchas, historical decisions. The stuff that isn't in the code itself.</p>
+
+        <h2 id="chunks">Per-file chunks</h2>
+        <p>Long files are split into chunks stored at <code>~/xtage/{repo}/chunks/{file-path}.md</code>. Each chunk covers a contiguous range of lines with full context headers. Claude loads chunks on demand instead of reading raw source.</p>
+
+      </main>
+    </div>
+  </div>
+
+  <footer class="site-footer surface-ink">
+    <div class="container footer-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="16" height="16">
+        Ruco
+      </a>
+      <nav class="footer-links">
+        <a href="../">xtage</a>
+        <a href="https://github.com/ruco-dev/xtage">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://ruco.dev/assets/main.js"></script>
+</body>
+</html>

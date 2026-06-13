@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mdblu Docs</title>
+  <meta name="description" content="mdblu documentation — structured Markdown templates for AI workflows with an MCP server.">
+  <link rel="stylesheet" href="https://ruco.dev/assets/style.css">
+  <link rel="icon" href="https://ruco.dev/assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="20" height="20">
+        Ruco
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="https://ruco.dev">All projects</a></li>
+        <li><a href="../">mdblu</a></li>
+        <li><a href="https://github.com/ruco-dev/mdblu">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="docs-hero">
+    <div class="container">
+      <p class="eyebrow">mdblu</p>
+      <h1>Documentation</h1>
+      <p>Structured Markdown templates for AI workflows — <code>MISSION</code>, <code>SPEC</code>, <code>ADR</code>, <code>HANDOFF</code>.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="docs-layout">
+
+      <aside class="docs-sidebar">
+        <span class="docs-sidebar-label">Getting started</span>
+        <nav>
+          <a href="#overview" class="active">Overview</a>
+          <a href="#connect">Connect the server</a>
+          <a href="#use-template">Use a template</a>
+        </nav>
+        <span class="docs-sidebar-label">Templates</span>
+        <nav>
+          <a href="#mission">MISSION</a>
+          <a href="#spec">SPEC</a>
+          <a href="#adr">ADR</a>
+          <a href="#handoff">HANDOFF</a>
+        </nav>
+        <span class="docs-sidebar-label">MCP tools</span>
+        <nav>
+          <a href="#use-template-tool">use_template</a>
+          <a href="#propose-update">propose_template_update</a>
+          <a href="#scaffold-hook">scaffold_hook</a>
+        </nav>
+        <span class="docs-sidebar-label">Reference</span>
+        <nav>
+          <a href="https://github.com/ruco-dev/mdblu">GitHub →</a>
+        </nav>
+      </aside>
+
+      <main class="docs-content">
+
+        <h2 id="overview">Overview</h2>
+        <p>mdblu is a library of Markdown templates designed specifically for AI workflows. Each template has a structure that Claude can reason about without open-ended interpretation — every section has a clear purpose and expected content type.</p>
+        <p>An MCP server exposes the templates programmatically, so Claude can scaffold them, propose updates, and hook into your project's document lifecycle without copy-paste.</p>
+
+        <h2 id="connect">Connect the server</h2>
+        <p>Add mdblu to your Claude Desktop config:</p>
+        <pre><code>{
+  "mcpServers": {
+    "mdblu": {
+      "command": "node",
+      "args": ["/path/to/mdblu/dist/index.js"]
+    }
+  }
+}</code></pre>
+        <p>See the <a href="https://github.com/ruco-dev/mdblu">GitHub repo</a> for full setup instructions including the hosted MCP server option.</p>
+
+        <h2 id="use-template">Use a template</h2>
+        <p>Scaffold a template directly from the CLI or via Claude:</p>
+        <pre><code>mdblu use MISSION</code></pre>
+        <p>This writes a <code>MISSION.md</code> to the current directory with all sections pre-populated with guidance comments.</p>
+
+        <h2 id="mission">MISSION</h2>
+        <p>Captures why the project exists, what success looks like, and the constraints Claude must respect. Typically placed at project root and referenced in <code>AGENT.md</code>.</p>
+        <p>Key sections: <strong>Vision</strong>, <strong>Goals</strong>, <strong>Non-goals</strong>, <strong>Success metrics</strong>, <strong>Constraints</strong>.</p>
+
+        <h2 id="spec">SPEC</h2>
+        <p>Defines a feature or system at implementation level — inputs, outputs, behavior, edge cases. Written before coding begins, referenced throughout implementation.</p>
+        <p>Key sections: <strong>Problem</strong>, <strong>Solution</strong>, <strong>API / Interface</strong>, <strong>Edge cases</strong>, <strong>Open questions</strong>.</p>
+
+        <h2 id="adr">ADR</h2>
+        <p>Architecture Decision Record — documents a significant technical decision, the options considered, and the rationale for the choice made. Immutable once recorded.</p>
+        <p>Key sections: <strong>Context</strong>, <strong>Decision</strong>, <strong>Options considered</strong>, <strong>Consequences</strong>.</p>
+
+        <h2 id="handoff">HANDOFF</h2>
+        <p>Packages the current state of a piece of work for handoff between sessions or collaborators. Prevents context loss between Claude sessions.</p>
+        <p>Key sections: <strong>Current state</strong>, <strong>What was done</strong>, <strong>What's next</strong>, <strong>Known blockers</strong>, <strong>Files changed</strong>.</p>
+
+        <h2 id="use-template-tool">use_template</h2>
+        <pre><code>use_template({ template: "SPEC", path: "docs/spec-auth.md" })</code></pre>
+        <p>Scaffolds the named template at the specified path. Claude fills in context-aware content if the project has a <code>MISSION.md</code> or <code>AGENT.md</code>.</p>
+
+        <h2 id="propose-update">propose_template_update</h2>
+        <pre><code>propose_template_update({
+  template: "HANDOFF",
+  section: "Files changed",
+  suggestion: "Add a 'Diff summary' subsection..."
+})</code></pre>
+        <p>Opens a PR against the mdblu repo with the proposed change. Accepted suggestions improve the template for all users.</p>
+
+        <h2 id="scaffold-hook">scaffold_hook</h2>
+        <p>Registers a lifecycle hook that fires when Claude finishes a task — for example, auto-scaffolding a HANDOFF on session end:</p>
+        <pre><code>scaffold_hook({ event: "session_end", template: "HANDOFF" })</code></pre>
+
+      </main>
+    </div>
+  </div>
+
+  <footer class="site-footer surface-ink">
+    <div class="container footer-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="16" height="16">
+        Ruco
+      </a>
+      <nav class="footer-links">
+        <a href="../">mdblu</a>
+        <a href="https://github.com/ruco-dev/mdblu">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://ruco.dev/assets/main.js"></script>
+</body>
+</html>

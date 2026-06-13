@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>skillms — A shared brain for AI workflows</title>
+  <meta name="description" content="MCP server exposing a reusable skill library — content strategy, SEO, and domain expertise — that Claude picks up automatically via skills://index.">
+  <link rel="stylesheet" href="https://ruco.dev/assets/style.css">
+  <link rel="icon" href="https://ruco.dev/assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="20" height="20">
+        Ruco
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="https://ruco.dev">All projects</a></li>
+        <li><a href="docs/">Docs</a></li>
+        <li><a href="https://github.com/ruco-dev/skillms">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero surface-ink">
+    <div class="container">
+      <p class="eyebrow">skillms</p>
+      <h1>A shared brain for<br>every AI workflow.</h1>
+      <p class="hero-desc">An MCP server that exposes a growing library of reusable skills. Claude picks them up automatically — no manual prompting required.</p>
+      <div class="hero-ctas">
+        <a href="https://github.com/ruco-dev/skillms" class="btn btn-primary">View on GitHub</a>
+        <a href="docs/" class="btn btn-ghost-light">Docs</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="container">
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3><code>analyze_url</code></h3>
+          <p>Point it at any URL and get structured insights matched against the skill library — content gaps, SEO signals, positioning analysis.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📌</div>
+          <h3><code>commit_skill</code></h3>
+          <p>Freeze a validated approach as a reusable skill. Once committed, any project in the library can pull it automatically.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3><code>contribute_skill</code></h3>
+          <p>Propose a new skill for the shared library. Skills are reviewed and merged via PR — the library grows with every project.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Auto-applies via <code>skills://index</code></h3>
+          <p>Skills load through the MCP resource protocol. Claude reads the index at session start and applies relevant guidance without prompting.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="install-section">
+    <div class="container">
+      <h2>Get started</h2>
+      <p>Connect the skillms MCP server to your Claude environment.</p>
+      <div class="install-block">
+        <code>github.com/ruco-dev/skillms</code>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer surface-ink">
+    <div class="container footer-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="16" height="16">
+        Ruco
+      </a>
+      <nav class="footer-links">
+        <a href="https://ruco.dev">All projects</a>
+        <a href="docs/">Docs</a>
+        <a href="https://github.com/ruco-dev/skillms">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://ruco.dev/assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>xtage — Code intelligence for Claude</title>
+  <meta name="description" content="Indexes your repo into CODEINDEX.md, REPO.md, and per-file chunks — token-efficient codebase access without pasting raw source.">
+  <link rel="stylesheet" href="https://ruco.dev/assets/style.css">
+  <link rel="icon" href="https://ruco.dev/assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="20" height="20">
+        Ruco
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="https://ruco.dev">All projects</a></li>
+        <li><a href="docs/">Docs</a></li>
+        <li><a href="https://github.com/ruco-dev/xtage">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero surface-ink">
+    <div class="container">
+      <p class="eyebrow">xtage</p>
+      <h1>Make any codebase<br>instantly legible to Claude.</h1>
+      <p class="hero-desc">Indexes your repo into structured Markdown — <code>CODEINDEX.md</code>, <code>REPO.md</code>, per-file chunks. Claude reads the index, not the source.</p>
+      <div class="hero-ctas">
+        <a href="https://github.com/ruco-dev/xtage" class="btn btn-primary">View on GitHub</a>
+        <a href="docs/" class="btn btn-ghost-light">Docs</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="container">
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">🗺</div>
+          <h3>CODEINDEX.md</h3>
+          <p>A structured map of every file by purpose, module, and layer. Claude reads the index to navigate without loading raw source into context.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">✂️</div>
+          <h3>Per-file chunks</h3>
+          <p>Long files are split and stored separately under <code>~/xtage/{repo}/</code>, keeping context windows lean when diving into specific areas.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📖</div>
+          <h3>REPO.md + PROJECTINSIGHTS.md</h3>
+          <p>High-level repo narrative and cross-cutting patterns in two dedicated files — fast orientation without reading every source file.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📁</div>
+          <h3>Works with any repo</h3>
+          <p>No framework dependency. Point <code>xtage</code> at any directory and run index. Outputs live outside the repo so they don't pollute your project.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="install-section">
+    <div class="container">
+      <h2>Get started</h2>
+      <p>Index any local repo in one command.</p>
+      <div class="install-block">
+        <code>xtage index .</code>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer surface-ink">
+    <div class="container footer-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="16" height="16">
+        Ruco
+      </a>
+      <nav class="footer-links">
+        <a href="https://ruco.dev">All projects</a>
+        <a href="docs/">Docs</a>
+        <a href="https://github.com/ruco-dev/xtage">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://ruco.dev/assets/main.js"></script>
+</body>
+</html>

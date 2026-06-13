@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>skillms Docs</title>
+  <meta name="description" content="skillms documentation — MCP server for a shared AI skill library with analyze_url, commit_skill, and contribute_skill.">
+  <link rel="stylesheet" href="https://ruco.dev/assets/style.css">
+  <link rel="icon" href="https://ruco.dev/assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="20" height="20">
+        Ruco
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="https://ruco.dev">All projects</a></li>
+        <li><a href="../">skillms</a></li>
+        <li><a href="https://github.com/ruco-dev/skillms">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="docs-hero">
+    <div class="container">
+      <p class="eyebrow">skillms</p>
+      <h1>Documentation</h1>
+      <p>Shared AI skill library — reusable expertise that Claude picks up automatically.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="docs-layout">
+
+      <aside class="docs-sidebar">
+        <span class="docs-sidebar-label">Getting started</span>
+        <nav>
+          <a href="#overview" class="active">Overview</a>
+          <a href="#connect">Connect the server</a>
+          <a href="#skills-index">Skills index</a>
+        </nav>
+        <span class="docs-sidebar-label">Tools</span>
+        <nav>
+          <a href="#analyze-url">analyze_url</a>
+          <a href="#commit-skill">commit_skill</a>
+          <a href="#contribute-skill">contribute_skill</a>
+        </nav>
+        <span class="docs-sidebar-label">Reference</span>
+        <nav>
+          <a href="https://github.com/ruco-dev/skillms">GitHub →</a>
+        </nav>
+      </aside>
+
+      <main class="docs-content">
+
+        <h2 id="overview">Overview</h2>
+        <p>skillms is an MCP server that exposes a growing library of reusable AI skills — content strategy, SEO, domain expertise, and more. Claude loads the skill index at session start via the <code>skills://index</code> MCP resource and applies relevant guidance automatically, without needing manual prompting.</p>
+
+        <h2 id="connect">Connect the server</h2>
+        <p>Add skillms to your Claude Desktop <code>claude_desktop_config.json</code>:</p>
+        <pre><code>{
+  "mcpServers": {
+    "skillms": {
+      "command": "node",
+      "args": ["/path/to/skillms/dist/index.js"]
+    }
+  }
+}</code></pre>
+        <p>See the <a href="https://github.com/ruco-dev/skillms">GitHub repo</a> for full setup instructions.</p>
+
+        <h2 id="skills-index">Skills index</h2>
+        <p>The <code>skills://index</code> MCP resource lists all available skills with their descriptions and trigger conditions. Claude reads this at session start and applies matching skills to relevant tasks automatically.</p>
+
+        <h2 id="analyze-url">analyze_url</h2>
+        <p>Fetch and analyze a URL against the skill library:</p>
+        <pre><code>analyze_url({ url: "https://example.com/blog/post" })</code></pre>
+        <p>Returns structured insights — content gaps, SEO signals, positioning analysis — matched against the skills Claude has loaded.</p>
+
+        <h2 id="commit-skill">commit_skill</h2>
+        <p>Persist a validated approach as a reusable skill in the library:</p>
+        <pre><code>commit_skill({
+  name: "seo-meta-audit",
+  domain: "seo",
+  description: "Audit meta tags against current best practices",
+  guidance: "Check title length (50-60 chars), meta description (150-160 chars)..."
+})</code></pre>
+        <p>Once committed, the skill becomes available to all projects connected to the same skillms instance.</p>
+
+        <h2 id="contribute-skill">contribute_skill</h2>
+        <p>Propose a new skill for the shared library. Opens a PR against the skillms repo for review:</p>
+        <pre><code>contribute_skill({
+  name: "content-brief",
+  domain: "content-strategy",
+  description: "Generate structured content briefs",
+  guidance: "..."
+})</code></pre>
+
+      </main>
+    </div>
+  </div>
+
+  <footer class="site-footer surface-ink">
+    <div class="container footer-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="16" height="16">
+        Ruco
+      </a>
+      <nav class="footer-links">
+        <a href="../">skillms</a>
+        <a href="https://github.com/ruco-dev/skillms">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://ruco.dev/assets/main.js"></script>
+</body>
+</html>

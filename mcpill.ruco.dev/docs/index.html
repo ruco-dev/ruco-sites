@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mcpill Docs</title>
+  <meta name="description" content="mcpill documentation — CLI for building MCP servers from plain-English PILL.md specs.">
+  <link rel="stylesheet" href="https://ruco.dev/assets/style.css">
+  <link rel="icon" href="https://ruco.dev/assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="20" height="20">
+        Ruco
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="https://ruco.dev">All projects</a></li>
+        <li><a href="../">mcpill</a></li>
+        <li><a href="https://github.com/ruco-dev/mcpill">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="docs-hero">
+    <div class="container">
+      <p class="eyebrow">mcpill</p>
+      <h1>Documentation</h1>
+      <p>Build MCP servers from plain-English specs — <code>init</code>, <code>compile</code>, <code>run</code>.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="docs-layout">
+
+      <aside class="docs-sidebar">
+        <span class="docs-sidebar-label">Getting started</span>
+        <nav>
+          <a href="#overview" class="active">Overview</a>
+          <a href="#install">Install</a>
+          <a href="#quickstart">Quickstart</a>
+        </nav>
+        <span class="docs-sidebar-label">PILL.md format</span>
+        <nav>
+          <a href="#pill-format">Structure</a>
+          <a href="#tools-spec">Tools</a>
+          <a href="#resources-spec">Resources</a>
+        </nav>
+        <span class="docs-sidebar-label">Commands</span>
+        <nav>
+          <a href="#cmd-init">init</a>
+          <a href="#cmd-compile">compile</a>
+          <a href="#cmd-run">run</a>
+        </nav>
+        <span class="docs-sidebar-label">Reference</span>
+        <nav>
+          <a href="https://github.com/ruco-dev/mcpill">GitHub →</a>
+        </nav>
+      </aside>
+
+      <main class="docs-content">
+
+        <h2 id="overview">Overview</h2>
+        <p>mcpill is a CLI for building MCP servers from a plain-English spec called <code>PILL.md</code>. You describe your server's tools, resources, and prompts in structured Markdown — then hand the file to Claude and run <code>mcpill compile</code> to get a deployable artifact.</p>
+        <p>mcpill uses <a href="https://mcpster.ruco.dev">mcpster</a> under the hood for the generated server code.</p>
+
+        <h2 id="install">Install</h2>
+        <pre><code>npm install -g mcpill</code></pre>
+
+        <h2 id="quickstart">Quickstart</h2>
+        <pre><code># 1. Scaffold a new project
+mcpill init my-server
+
+# 2. Edit PILL.md to describe your server
+# 3. Hand PILL.md to Claude for implementation guidance
+# 4. Compile to a deployable artifact
+mcpill compile
+
+# 5. Start the server
+mcpill run</code></pre>
+
+        <h2 id="pill-format">PILL.md structure</h2>
+        <p>A PILL.md has three required sections and one optional:</p>
+        <pre><code># My Server
+
+## Description
+One paragraph describing what this server does and for whom.
+
+## Tools
+List each tool — name, description, inputs, outputs.
+
+## Resources (optional)
+List each MCP resource URI and what it exposes.
+
+## Constraints
+Any hard rules the implementation must follow.</code></pre>
+
+        <h2 id="tools-spec">Specifying tools</h2>
+        <p>Each tool entry in <code>## Tools</code> follows this pattern:</p>
+        <pre><code>### search_docs
+Search the documentation index.
+
+**Input:** `query` (string, required) — the search query
+**Output:** Array of matching doc sections with titles and excerpts.</code></pre>
+
+        <h2 id="resources-spec">Specifying resources</h2>
+        <pre><code>### docs://index
+Lists all available documentation sections.
+Returns a Markdown index with section titles and URIs.</code></pre>
+
+        <h2 id="cmd-init">init</h2>
+        <p>Scaffold a new mcpill project:</p>
+        <pre><code>mcpill init [project-name]</code></pre>
+        <p>Creates a directory with <code>PILL.md</code>, <code>package.json</code>, and a <code>README.md</code>.</p>
+
+        <h2 id="cmd-compile">compile</h2>
+        <p>Validate the PILL.md and generate the server artifact:</p>
+        <pre><code>mcpill compile [--pill PILL.md] [--out dist/]</code></pre>
+        <p>Validation checks that all tool inputs and outputs are described, required sections are present, and constraint rules are parseable.</p>
+
+        <h2 id="cmd-run">run</h2>
+        <p>Start the compiled server (stdio transport by default):</p>
+        <pre><code>mcpill run [--port 3000]</code></pre>
+        <p>Pass <code>--port</code> to start an HTTP server instead of stdio.</p>
+
+      </main>
+    </div>
+  </div>
+
+  <footer class="site-footer surface-ink">
+    <div class="container footer-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="16" height="16">
+        Ruco
+      </a>
+      <nav class="footer-links">
+        <a href="../">mcpill</a>
+        <a href="https://github.com/ruco-dev/mcpill">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://ruco.dev/assets/main.js"></script>
+</body>
+</html>

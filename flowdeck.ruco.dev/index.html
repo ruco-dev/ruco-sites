@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flowdeck — Human × AI task flow</title>
+  <meta name="description" content="Structured TODO cards with BOT and HUMAN sections. play a card, run a turn — Claude does its part, you do yours.">
+  <link rel="stylesheet" href="https://ruco.dev/assets/style.css">
+  <link rel="icon" href="https://ruco.dev/assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="20" height="20">
+        Ruco
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="https://ruco.dev">All projects</a></li>
+        <li><a href="docs/">Docs</a></li>
+        <li><a href="https://github.com/ruco-dev/flowdeck">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero surface-ink">
+    <div class="container">
+      <p class="eyebrow">flowdeck</p>
+      <h1>Human × AI collaboration,<br>one card at a time.</h1>
+      <p class="hero-desc">Every task is a card — split cleanly into what Claude does and what only you can decide. Ship more by deciding less.</p>
+      <div class="hero-ctas">
+        <a href="https://github.com/ruco-dev/flowdeck" class="btn btn-primary">View on GitHub</a>
+        <a href="docs/" class="btn btn-ghost-light">Docs</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="container">
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3>BOT / HUMAN sections</h3>
+          <p>Every card splits into what Claude executes and what requires your judgement. No ambiguity, no missed steps.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">▶</div>
+          <h3><code>play</code> and <code>turn</code></h3>
+          <p>Run a single card with <code>flowdeck play &lt;slug&gt;</code> or the full deck with <code>flowdeck turn</code>. Dependencies are declared, not guessed.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>AGENT.md context</h3>
+          <p>A persistent context file keeps Claude oriented across every session — no re-explaining the project each time.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🗂</div>
+          <h3>Deck lifecycle</h3>
+          <p>Cards move from <code>_stock</code> → active column → <code>_meld</code> (shipped) or <code>_discard</code>. Frozen cards park in <code>_frozen</code> with an unfreeze signal.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="install-section">
+    <div class="container">
+      <h2>Get started</h2>
+      <p>Initialize a deck in any project directory.</p>
+      <div class="install-block">
+        <code>flowdeck init</code>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer surface-ink">
+    <div class="container footer-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="16" height="16">
+        Ruco
+      </a>
+      <nav class="footer-links">
+        <a href="https://ruco.dev">All projects</a>
+        <a href="docs/">Docs</a>
+        <a href="https://github.com/ruco-dev/flowdeck">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://ruco.dev/assets/main.js"></script>
+</body>
+</html>

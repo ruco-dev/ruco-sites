@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mcpster Docs</title>
+  <meta name="description" content="mcpster documentation — TypeScript SDK for building MCP servers with chainable API, Zod validation, and a deploy CLI.">
+  <link rel="stylesheet" href="https://ruco.dev/assets/style.css">
+  <link rel="icon" href="https://ruco.dev/assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="20" height="20">
+        Ruco
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="https://ruco.dev">All projects</a></li>
+        <li><a href="../">mcpster</a></li>
+        <li><a href="https://github.com/ruco-dev/mcpster">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="docs-hero">
+    <div class="container">
+      <p class="eyebrow">mcpster</p>
+      <h1>Documentation</h1>
+      <p>TypeScript SDK for building MCP servers — chainable API, Zod validation, stdio + HTTP transports.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="docs-layout">
+
+      <aside class="docs-sidebar">
+        <span class="docs-sidebar-label">Getting started</span>
+        <nav>
+          <a href="#overview" class="active">Overview</a>
+          <a href="#install">Install</a>
+          <a href="#quickstart">Quickstart</a>
+        </nav>
+        <span class="docs-sidebar-label">API</span>
+        <nav>
+          <a href="#tools">Tools</a>
+          <a href="#resources">Resources</a>
+          <a href="#prompts">Prompts</a>
+          <a href="#transports">Transports</a>
+        </nav>
+        <span class="docs-sidebar-label">Deploy</span>
+        <nav>
+          <a href="#deploy-cli">Deploy CLI</a>
+        </nav>
+        <span class="docs-sidebar-label">Reference</span>
+        <nav>
+          <a href="https://github.com/ruco-dev/mcpster">GitHub →</a>
+        </nav>
+      </aside>
+
+      <main class="docs-content">
+
+        <h2 id="overview">Overview</h2>
+        <p>mcpster is a TypeScript SDK for building MCP servers. It wraps <code>@modelcontextprotocol/sdk</code> with a chainable builder API, adds Zod schema validation at the tool input layer, and ships a deploy CLI that targets Railway, Fly, and Cloudflare Workers.</p>
+
+        <h2 id="install">Install</h2>
+        <pre><code>npm install @ruco-ai/mcpster</code></pre>
+
+        <h2 id="quickstart">Quickstart</h2>
+        <pre><code>import { createServer } from '@ruco-ai/mcpster'
+import { z } from 'zod'
+
+const server = createServer({ name: 'my-server', version: '1.0.0' })
+  .tool('greet', {
+    description: 'Greet a user by name',
+    input: z.object({ name: z.string() }),
+    handler: async ({ name }) => `Hello, ${name}!`,
+  })
+
+server.start() // stdio by default</code></pre>
+
+        <h2 id="tools">Tools</h2>
+        <p>Add tools with <code>.tool(name, config)</code>. The <code>input</code> field accepts any Zod schema — validation happens before the handler runs, and errors are returned as structured MCP errors.</p>
+        <pre><code>.tool('search', {
+  description: 'Search documents',
+  input: z.object({
+    query: z.string().min(1),
+    limit: z.number().int().min(1).max(100).default(10),
+  }),
+  handler: async ({ query, limit }) => {
+    // ...
+  },
+})</code></pre>
+
+        <h2 id="resources">Resources</h2>
+        <p>Expose static or dynamic resources with <code>.resource(uri, config)</code>:</p>
+        <pre><code>.resource('data://index', {
+  description: 'The resource index',
+  handler: async () => ({ contents: [{ uri: 'data://index', text: '...' }] }),
+})</code></pre>
+
+        <h2 id="prompts">Prompts</h2>
+        <p>Register prompt templates with <code>.prompt(name, config)</code>:</p>
+        <pre><code>.prompt('summarize', {
+  description: 'Summarize a document',
+  arguments: [{ name: 'text', required: true }],
+  handler: async ({ text }) => ({
+    messages: [{ role: 'user', content: { type: 'text', text: `Summarize: ${text}` } }],
+  }),
+})</code></pre>
+
+        <h2 id="transports">Transports</h2>
+        <p>mcpster supports two transports. Pass <code>transport</code> to <code>start()</code>:</p>
+        <pre><code>// stdio (default — for Claude Desktop and local tools)
+server.start()
+
+// HTTP/Express (for remote / deployed servers)
+server.start({ transport: 'http', port: 3000 })</code></pre>
+
+        <h2 id="deploy-cli">Deploy CLI</h2>
+        <p>Deploy the server to a hosting provider:</p>
+        <pre><code># Railway
+mcpster deploy --target railway
+
+# Fly.io
+mcpster deploy --target fly
+
+# Cloudflare Workers
+mcpster deploy --target cloudflare</code></pre>
+        <p>Each target reads provider credentials from environment variables. See the <a href="https://github.com/ruco-dev/mcpster">GitHub repo</a> for per-provider setup instructions.</p>
+
+      </main>
+    </div>
+  </div>
+
+  <footer class="site-footer surface-ink">
+    <div class="container footer-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="16" height="16">
+        Ruco
+      </a>
+      <nav class="footer-links">
+        <a href="../">mcpster</a>
+        <a href="https://github.com/ruco-dev/mcpster">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://ruco.dev/assets/main.js"></script>
+</body>
+</html>

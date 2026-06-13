@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mdblu — Structured Markdown for AI workflows</title>
+  <meta name="description" content="MISSION, SPEC, ADR, HANDOFF — templates shaped for AI reasoning, with an MCP server that wires them into your project automatically.">
+  <link rel="stylesheet" href="https://ruco.dev/assets/style.css">
+  <link rel="icon" href="https://ruco.dev/assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="20" height="20">
+        Ruco
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="https://ruco.dev">All projects</a></li>
+        <li><a href="docs/">Docs</a></li>
+        <li><a href="https://github.com/ruco-dev/mdblu">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero surface-ink">
+    <div class="container">
+      <p class="eyebrow">mdblu</p>
+      <h1>Structured documents<br>that AI actually uses.</h1>
+      <p class="hero-desc"><code>MISSION</code>, <code>SPEC</code>, <code>ADR</code>, <code>HANDOFF</code> — purpose-built Markdown templates with an MCP server that makes Claude read and update them automatically.</p>
+      <div class="hero-ctas">
+        <a href="https://github.com/ruco-dev/mdblu" class="btn btn-primary">View on GitHub</a>
+        <a href="docs/" class="btn btn-ghost-light">Docs</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="container">
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <h3>Purpose-built templates</h3>
+          <p><code>MISSION</code>, <code>SPEC</code>, <code>ADR</code>, <code>HANDOFF</code> — each structured so Claude can reason about your project without open-ended interpretation.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔧</div>
+          <h3>MCP server</h3>
+          <p><code>use_template</code>, <code>propose_template_update</code>, <code>scaffold_hook</code> — Claude scaffolds, reads, and proposes updates through the MCP protocol.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔁</div>
+          <h3>Auto-improvement</h3>
+          <p>mdblu detects when a template could be improved based on usage patterns and opens a PR automatically — the system evolves as you work.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🧩</div>
+          <h3>Composable</h3>
+          <p>Drop any template into any project. They work standalone or as a full system. No lock-in to a specific workflow or tool stack.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="install-section">
+    <div class="container">
+      <h2>Get started</h2>
+      <p>Scaffold a document in the current directory.</p>
+      <div class="install-block">
+        <code>mdblu use MISSION</code>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer surface-ink">
+    <div class="container footer-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="16" height="16">
+        Ruco
+      </a>
+      <nav class="footer-links">
+        <a href="https://ruco.dev">All projects</a>
+        <a href="docs/">Docs</a>
+        <a href="https://github.com/ruco-dev/mdblu">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://ruco.dev/assets/main.js"></script>
+</body>
+</html>

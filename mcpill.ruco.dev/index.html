@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mcpill — Describe a server. Ship it.</title>
+  <meta name="description" content="CLI for building MCP servers from a plain-English PILL.md spec. mcpill compile turns it into a deployable artifact. mcpill run starts it.">
+  <link rel="stylesheet" href="https://ruco.dev/assets/style.css">
+  <link rel="icon" href="https://ruco.dev/assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="20" height="20">
+        Ruco
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="https://ruco.dev">All projects</a></li>
+        <li><a href="docs/">Docs</a></li>
+        <li><a href="https://github.com/ruco-dev/mcpill">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero surface-ink">
+    <div class="container">
+      <p class="eyebrow">mcpill</p>
+      <h1>Describe a server<br>in plain English. Ship it.</h1>
+      <p class="hero-desc">Write what your MCP server does in a <code>PILL.md</code>. Hand it to Claude. Run <code>mcpill compile</code> — get a deployable artifact.</p>
+      <div class="hero-ctas">
+        <a href="https://github.com/ruco-dev/mcpill" class="btn btn-primary">View on GitHub</a>
+        <a href="docs/" class="btn btn-ghost-light">Docs</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="container">
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">💊</div>
+          <h3>PILL.md format</h3>
+          <p>Describe your MCP server's tools, resources, and prompts in structured Markdown. No TypeScript required to define behavior.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🌱</div>
+          <h3><code>mcpill init</code></h3>
+          <p>Scaffolds a new project with the PILL.md template, sensible defaults, and a README — ready to describe and compile immediately.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚙️</div>
+          <h3><code>mcpill compile</code></h3>
+          <p>Validates the spec and generates a ready-to-run MCP server artifact. Claude fills in the implementation from the PILL.md description.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">▶</div>
+          <h3><code>mcpill run</code></h3>
+          <p>Starts the compiled server immediately without leaving the CLI. Attach it to Claude Desktop or any MCP-compatible client.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="install-section">
+    <div class="container">
+      <h2>Get started</h2>
+      <p>Scaffold a new MCP server project.</p>
+      <div class="install-block">
+        <code>mcpill init my-server</code>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer surface-ink">
+    <div class="container footer-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="16" height="16">
+        Ruco
+      </a>
+      <nav class="footer-links">
+        <a href="https://ruco.dev">All projects</a>
+        <a href="docs/">Docs</a>
+        <a href="https://github.com/ruco-dev/mcpill">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://ruco.dev/assets/main.js"></script>
+</body>
+</html>

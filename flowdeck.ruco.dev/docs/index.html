@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flowdeck Docs</title>
+  <meta name="description" content="flowdeck documentation — structured Human × AI task flow with BOT/HUMAN cards.">
+  <link rel="stylesheet" href="https://ruco.dev/assets/style.css">
+  <link rel="icon" href="https://ruco.dev/assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="20" height="20">
+        Ruco
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="https://ruco.dev">All projects</a></li>
+        <li><a href="../">flowdeck</a></li>
+        <li><a href="https://github.com/ruco-dev/flowdeck">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="docs-hero">
+    <div class="container">
+      <p class="eyebrow">flowdeck</p>
+      <h1>Documentation</h1>
+      <p>Human × AI task flow via structured TODO cards.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="docs-layout">
+
+      <aside class="docs-sidebar">
+        <span class="docs-sidebar-label">Getting started</span>
+        <nav>
+          <a href="#overview" class="active">Overview</a>
+          <a href="#install">Install</a>
+          <a href="#init">Initialize a deck</a>
+        </nav>
+        <span class="docs-sidebar-label">Core concepts</span>
+        <nav>
+          <a href="#cards">Cards</a>
+          <a href="#columns">Columns</a>
+          <a href="#piles">Piles</a>
+          <a href="#agent-md">AGENT.md</a>
+        </nav>
+        <span class="docs-sidebar-label">Commands</span>
+        <nav>
+          <a href="#play">play</a>
+          <a href="#turn">turn</a>
+          <a href="#meld">meld</a>
+        </nav>
+        <span class="docs-sidebar-label">Reference</span>
+        <nav>
+          <a href="https://github.com/ruco-dev/flowdeck">GitHub →</a>
+        </nav>
+      </aside>
+
+      <main class="docs-content">
+
+        <h2 id="overview">Overview</h2>
+        <p>flowdeck is a Human × AI collaboration system built around a simple primitive: the <strong>card</strong>. Every card is a <code>TODO.md</code> file split into two sections — <code>## BOT</code> (what Claude executes) and <code>## HUMAN</code> (what only you can decide). The deck lives in <code>.flowdeck/</code> in your project root.</p>
+        <p>The separation forces clarity: Claude never gets stuck waiting for a decision you didn't know it needed, and you never get surprised by an action you didn't sanction.</p>
+
+        <h2 id="install">Install</h2>
+        <pre><code>npm install -g flowdeck</code></pre>
+
+        <h2 id="init">Initialize a deck</h2>
+        <p>Run in any project root to scaffold the deck structure and a starter <code>AGENT.md</code>:</p>
+        <pre><code>flowdeck init</code></pre>
+        <p>This creates <code>.flowdeck/</code> with the standard column structure and pile folders.</p>
+
+        <h2 id="cards">Cards</h2>
+        <p>A card is a <code>TODO.md</code> file. The filename slug becomes the card's identifier. Cards follow this structure:</p>
+        <pre><code># Card title
+
+Short description of the task.
+
+---
+
+## BOT
+
+- [ ] Step Claude will execute
+- [ ] Another automated step
+
+---
+
+## HUMAN
+
+- [ ] Decision or action that requires your input
+
+#### COMMENTS
+
+Any notes from a prior run.</code></pre>
+        <p>Bot items use standard GitHub-flavored Markdown task syntax. Claude marks each done with <code>- [x]</code> and adds a one-line note indented with <code>&gt;</code>.</p>
+
+        <h2 id="columns">Columns</h2>
+        <p>Columns are subdirectories inside <code>.flowdeck/</code>. Cards move between columns as work progresses. You define your own columns — common examples: <code>start/</code>, <code>review/</code>, <code>done/</code>.</p>
+
+        <h2 id="piles">Piles</h2>
+        <p>Special subfolders that are never treated as playable columns:</p>
+        <ul>
+          <li><code>_meld/</code> — shipped cards</li>
+          <li><code>_discard/</code> — cancelled or abandoned</li>
+          <li><code>_frozen/</code> — blocked, each with a <code>FREEZE.md</code> unfreeze signal</li>
+          <li><code>_stock/</code> — backlog, not yet ready to play</li>
+          <li><code>_blueprints/</code> — reusable card templates</li>
+          <li><code>_energy-cards/</code> — mdblu templates and prompts</li>
+        </ul>
+
+        <h2 id="agent-md">AGENT.md</h2>
+        <p><code>AGENT.md</code> lives at <code>.flowdeck/AGENT.md</code> and carries persistent project context — architecture, conventions, current priorities. Claude reads it at the start of every <code>play</code> and <code>turn</code>. Update it as the project evolves.</p>
+
+        <h2 id="play">play</h2>
+        <p>Execute a single card by its slug (the folder path relative to <code>.flowdeck/</code>):</p>
+        <pre><code>flowdeck play start/my-card</code></pre>
+        <p>Pass <code>--no-dep-check</code> to skip dependency validation:</p>
+        <pre><code>flowdeck play start/my-card --no-dep-check</code></pre>
+
+        <h2 id="turn">turn</h2>
+        <p>Play the full deck. Cards with no unmet <code>depends:</code> headers run in parallel; dependent cards wait:</p>
+        <pre><code>flowdeck turn</code></pre>
+        <p>Force serial execution if the dependency grouping is wrong:</p>
+        <pre><code>flowdeck turn --serial</code></pre>
+
+        <h2 id="meld">meld</h2>
+        <p>Move a completed card to <code>_meld/</code> after all BOT and HUMAN items are checked off:</p>
+        <pre><code>flowdeck meld start/my-card</code></pre>
+
+      </main>
+    </div>
+  </div>
+
+  <footer class="site-footer surface-ink">
+    <div class="container footer-inner">
+      <a class="nav-brand" href="https://ruco.dev">
+        <img src="https://ruco.dev/assets/logo.svg" alt="Ruco" width="16" height="16">
+        Ruco
+      </a>
+      <nav class="footer-links">
+        <a href="../">flowdeck</a>
+        <a href="https://github.com/ruco-dev/flowdeck">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://ruco.dev/assets/main.js"></script>
+</body>
+</html>
