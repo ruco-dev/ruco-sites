@@ -1,0 +1,49 @@
+{
+  "rewrites": [
+    {
+      "has": [{ "type": "host", "value": "flowdeck.ruco.dev" }],
+      "source": "/(.*)",
+      "destination": "/flowdeck.ruco.dev/$1"
+    },
+    {
+      "has": [{ "type": "host", "value": "sitegrow.ruco.dev" }],
+      "source": "/(.*)",
+      "destination": "/sitegrow.ruco.dev/$1"
+    },
+    {
+      "has": [{ "type": "host", "value": "mcpster.ruco.dev" }],
+      "source": "/(.*)",
+      "destination": "/mcpster.ruco.dev/$1"
+    },
+    {
+      "has": [{ "type": "host", "value": "skillms.ruco.dev" }],
+      "source": "/(.*)",
+      "destination": "/skillms.ruco.dev/$1"
+    },
+    {
+      "has": [{ "type": "host", "value": "xtage.ruco.dev" }],
+      "source": "/(.*)",
+      "destination": "/xtage.ruco.dev/$1"
+    },
+    {
+      "has": [{ "type": "host", "value": "mcpill.ruco.dev" }],
+      "source": "/(.*)",
+      "destination": "/mcpill.ruco.dev/$1"
+    },
+    {
+      "has": [{ "type": "host", "value": "mdblu.ruco.dev" }],
+      "source": "/(.*)",
+      "destination": "/mdblu.ruco.dev/$1"
+    },
+    {
+      "has": [{ "type": "host", "value": "ruco.dev" }],
+      "source": "/(.*)",
+      "destination": "/ruco.dev/$1"
+    },
+    {
+      "has": [{ "type": "host", "value": "www.ruco.dev" }],
+      "source": "/(.*)",
+      "destination": "/ruco.dev/$1"
+    }
+  ]
+}
